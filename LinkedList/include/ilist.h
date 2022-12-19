@@ -1,10 +1,9 @@
 #ifndef _ILIST_H_
 #define _ILIST_H_
 
+#include <stdio.h>
 #include <stddef.h>
-#include <stdlib.h> 
-#include <string.h>
-#include "lib/core/basis.h"
+#include "iiterator.h"
 
 /*   IList Interface   */
 typedef struct _IList IList;
@@ -13,8 +12,9 @@ struct _IList
 {
     void (*push)(IList *, int );
     int (*pop)(IList *);
-	int (*empty)(IList *);
+	short (*empty)(IList *);
 	size_t (*count)(IList *);
+    IIterator* (*iterator)(IList *);
 };
 
 

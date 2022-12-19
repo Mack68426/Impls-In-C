@@ -1,7 +1,6 @@
 #ifndef _LINKEDLIST_H_
 #define _LINKEDLIST_H_
 
-#include "lib/core/basis.h"
 #include "ilist.h"
 
 typedef struct _ListNode ListNode;
@@ -25,9 +24,10 @@ struct _LinkedList
 };
 
 extern LinkedList *LinkedList_construct(void *);
-extern void LinkedList_destruct(IList *);
+extern void LinkedList_destruct(LinkedList *);
+
 extern LinkedList *$LinkedList(void *);
-extern void $XList(LinkedList *);
+extern void $XLinkedList(IList *);
 
 
 #endif // !_LINKEDLIST_H_

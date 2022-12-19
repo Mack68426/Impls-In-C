@@ -3,48 +3,67 @@
 #include <string.h>
 #include <assert.h>
 
+#include "basis.h"
 #include "ilist.h"
+#include "iiterator.h"
 #include "linkedlist.h"
+#include "linkedlist_iterator.h"
 
-// $Node  = Node_construct;
-// $XNode = Node_destruct;
+
 static void LinkedList_push(IList *, int);
 static int LinkedList_pop(IList *);
 static short LinkedList_empty(IList *);
-static size_t LinkList_count(IList *);
-// static IIterator* LinkedList_iterator(IList*);
+static size_t LinkedList_count(IList *);
+static IIterator* LinkedList_iterator(IList*);
 
 
 LinkedList *LinkedList_construct(void *addr)
 {
     if(!addr) return NULL;
     LinkedList *linkedList = addr;
+    linkedList->Head = NULL;
     
     /* 成員函數綁定 */
     linkedList->push = LinkedList_push;
     linkedList->pop = LinkedList_pop;
     linkedList->empty = LinkedList_empty;
     linkedList->count = LinkedList_count;
-
+    linkedList->iterator = LinkedList_iterator;
 
     return linkedList;
 
 }
-void LinkedList_destruct(LinkedList *self) { self = NULL; }
+void LinkedList_destruct(LinkedList *self)
+{
+
+}
 
 
 LinkedList *$LinkedList(void *addr)
 {
-    // allocate(node, sizeof(struct NodeType));
+    if(!addr) return NULL;
 
-    if (!addr) return NULL;
-    LinkedList *node = addr;
+    LinkedList *linkedList = addr;
+    linkedList->Head = NULL;
     
+    /* 成員函數綁定 */
+    linkedList->push = LinkedList_push;
+    linkedList->pop = LinkedList_pop;
+    linkedList->empty = LinkedList_empty;
+    linkedList->count = LinkedList_count;
+    linkedList->iterator = LinkedList_iterator;
 
-    return node;
+    return linkedList;
 }
 
-void $XLinkedList(LinkedList *self) { self = NULL; }
+void $XLinkedList(IList *self)
+{
+    LinkedList* linkedList = 
+        container_of(self, LinkedList, ilist);
+    
+    delete(LinkedList, linkedList);
+
+}
 
 
 void LinkedList_push(IList *self, int element)
@@ -65,7 +84,7 @@ void LinkedList_push(IList *self, int element)
 
 int LinkedList_pop(IList * self)
 {
-    LinkedList *llist = container_of(self, LinkedList, ilist)
+    LinkedList *llist = container_of(self, LinkedList, ilist);
     assert(llist->Head != NULL);
 
     ListNode *tmp = llist->Head;
@@ -96,4 +115,12 @@ size_t LinkedList_count(IList *self)
     for (; tmp; tmp = tmp->next)    ++count;
 
     return count;
+}
+
+
+IIterator* LinkedList_iterator(IList* self)
+{
+    LinkedList* linkedList = container_of(self, LinkedList, ilist);
+    
+	return &new(LinkedListIterator, linkedList->Head)->iiterator;
 }

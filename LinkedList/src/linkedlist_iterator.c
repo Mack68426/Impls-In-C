@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#include "lib/core/basis.h"
-#include "Iterator/include/iiterator.h"
+#include "basis.h"
+#include "iiterator.h"
 #include "linkedlist_iterator.h"
 #include "linkedlist.h"
 
@@ -24,22 +24,43 @@ LinkedListIterator* LinkedListIterator_construct(void* addr, ListNode* node)
 	return linkedListIterator;
 }
 
-void LinkedListIterator_destruct(LinkedListIterator* linkedListIterator)
+void LinkedListIterator_destruct(LinkedListIterator* self)
 {
 }
 
-int LinkedListIterator_hasNext(IIterator* iiterator)
+
+LinkedListIterator* $LinkedListIterator(void* addr, ListNode* node)
+{
+	if (!addr) return NULL;
+
+	LinkedListIterator* linkedListIterator = addr;
+	linkedListIterator->currentNode = node;
+
+	linkedListIterator->hasNext = LinkedListIterator_hasNext;
+	linkedListIterator->next = LinkedListIterator_next;
+
+	return linkedListIterator;
+}
+void $XLinkedListIterator(IIterator* self)
+{	
+	LinkedListIterator* linkedListIterator = 
+		container_of(self, LinkedListIterator, iiterator);
+
+	delete(LinkedListIterator, linkedListIterator);
+}
+
+int LinkedListIterator_hasNext(IIterator* self)
 {
 	LinkedListIterator* linkedListIterator =
-	    container_of(iiterator, LinkedListIterator, iiterator);
+	    container_of(self, LinkedListIterator, iiterator);
 	
     return linkedListIterator->currentNode != NULL;
 }
 
-int LinkedListIterator_next(IIterator* iiterator)
+int LinkedListIterator_next(IIterator* self)
 {
 	LinkedListIterator* linkedListIterator =
-	    container_of(iiterator, LinkedListIterator, iiterator);
+	    container_of(self, LinkedListIterator, iiterator);
 	
     int value = linkedListIterator->currentNode->value;
 	linkedListIterator->currentNode = linkedListIterator->currentNode->next;

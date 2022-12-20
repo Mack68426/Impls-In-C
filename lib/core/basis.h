@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stddef.h>
 
+// ooc 
 #define container_of(ptr, type, member)					\
 	({								\
 		const typeof(((type *)0)->member ) *__mptr = (ptr);	\
@@ -15,10 +16,13 @@
 #define new(TYPE, args...) TYPE ## _construct(malloc(sizeof(TYPE)), ## args)
 #define delete(TYPE, ptr) do { TYPE ## _destruct(ptr); free(ptr); } while(0)
 
+// conbined ideas 
 #define new$(TYPE, args...) $ ## TYPE(malloc(sizeof(TYPE)), ## args)
 #define delete$(TYPE, ptr) do { $X ## TYPE(ptr); free(ptr); } while(0)
+#define printfit(T, format, args...) T ## _printf(format, ## args)
 
-#define allocate(ptr, size)  if( !( (ptr) = (typeof(ptr))malloc(size)) ) {  perror("Allocation Failed\n"); exit(0);} return ptr;
-#define release(ptr) { free(ptr) };
+// Old Ideas
+#define allocate(ptr, s)	((!( (ptr) = (typeof(ptr)) malloc(s)) ) ? &perror("Allocation Failed\n") : ptr)
+#define collect(ptr) free(ptr)
 
 #endif

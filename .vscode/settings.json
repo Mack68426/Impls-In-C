@@ -1,23 +1,29 @@
 {
     "files.associations": {
         "*.html": "html",
-        "charconv": "c",
-        "__tuple": "c",
-        "array": "c",
-        "type_traits": "c",
+        "types.h": "c",
+        "any.h": "c",
+        "any": "c",
+        "*.inc": "c",
+        "filesystem": "c",
+        "__bit_reference": "c",
+        "bitset": "c",
+        "deque": "c",
+        "__memory": "c",
         "limits": "c",
+        "ratio": "c",
         "tuple": "c",
-        "compare": "c",
+        "type_traits": "c",
+        "vector": "c",
+        "array": "c",
         "functional": "c",
         "utility": "c",
-        "chrono": "c",
-        "memory": "c",
-        "xmemory": "c",
-        "xstring": "c",
-        "xtr1common": "c",
-        "xutility": "c",
-        "*.inc": "c",
-        "*.def": "c",
-        "__node_handle": "c"
-    }
+        "variant": "c",
+        "xlocnum": "c",
+        "xtr1common": "c"
+    },
+    "C_Cpp.default.includePath": [
+        "${default}",
+        "${workspaceFolder}\\**"
+    ]
 }

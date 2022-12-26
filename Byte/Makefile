@@ -1,5 +1,5 @@
-EXEC_PATH = ../bin
-OBJ_PATH = obj/General
+EXEC_PATH = bin
+OBJ_PATH = obj/Byte
 INCLUDE_PATH = include
 LIB_PATH = ../lib/core
 SRC_PATH = src
@@ -7,8 +7,8 @@ CC = gcc
 OPTIONS = -Wall -fms-extensions
 
 
-EXEC = $(EXEC_PATH)/General
-OBJS = $(OBJ_PATH)/general.o $(OBJ_PATH)/main.o
+EXEC = $(EXEC_PATH)/Byte
+OBJS = $(OBJ_PATH)/byte.o $(OBJ_PATH)/main.o
 
 
 all: dir build
@@ -22,7 +22,7 @@ build: $(OBJS) $(EXEC)
 $(EXEC): $(OBJS)
 	$(CC) -g -o $@ $(OBJS)
 
-$(OBJ_PATH)/any.o: $(SRC_PATH)/any.c
+$(OBJ_PATH)/byte.o: $(SRC_PATH)/byte.c
 	$(CC) -g -c $< -I $(LIB_PATH) -I $(INCLUDE_PATH) -o $@ $(OPTIONS)
 
 $(OBJ_PATH)/main.o: $(SRC_PATH)/main.c

@@ -1,29 +1,7 @@
 {
     "files.associations": {
         "*.html": "html",
-        "types.h": "c",
-        "any.h": "c",
-        "any": "c",
-        "*.inc": "c",
-        "filesystem": "c",
-        "__bit_reference": "c",
-        "bitset": "c",
-        "deque": "c",
-        "__memory": "c",
-        "limits": "c",
-        "ratio": "c",
-        "tuple": "c",
-        "type_traits": "c",
-        "vector": "c",
-        "array": "c",
-        "functional": "c",
-        "utility": "c",
-        "variant": "c",
-        "xlocnum": "c",
-        "xtr1common": "c"
-    },
-    "C_Cpp.default.includePath": [
-        "${default}",
-        "${workspaceFolder}\\**"
-    ]
+        "stdbool.h": "c",
+        "basis.h": "c"
+    }
 }

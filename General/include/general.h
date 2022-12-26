@@ -20,14 +20,14 @@ struct _General
 
     union _Primitive
     {
-        char        ;char        ch;
+        char        ;
         short       ;
         int         ;
         long        ;
         float       ;
         double      ;
         long double ;
-        
+        // char        ch;
         // short       sh;
         // int          i;
         // long         l;

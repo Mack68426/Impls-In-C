@@ -22,7 +22,7 @@
 #define printfit(T, format, args...) T ## _printf(format, ## args)
 
 // Old Ideas
-#define allocate(ptr, s)	((!( (ptr) = (typeof(ptr)) malloc(s)) ) ? &perror("Allocation Failed\n") : ptr)
+#define allocate(ptr, s)	( (T) *ptr = ( (T) *) malloc(s) )  ? ptr : perror("Allocation Failed\n")
 #define collect(ptr) free(ptr)
 
 #endif
